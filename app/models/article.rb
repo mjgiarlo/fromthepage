@@ -115,7 +115,7 @@ class Article < ActiveRecord::Base
     version.source_text = self.source_text
     # set foreign keys
     version.article = self
-    version.user = User.current_user
+    version.user = User.current
     
     # now do the complicated version update thing
     previous_version = 

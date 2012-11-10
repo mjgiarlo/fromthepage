@@ -1,11 +1,13 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
-require_dependency "login_system"
+# TODO: Replace this login_system with devise and/or omniauth
+#require_dependency "login_system"
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 
-  include AuthenticatedSystem
+  # TODO: Replace this AuthenticationSystem stuff w/ devise
+  #include AuthenticatedSystem
   helper_method :logged_in?
   before_filter :load_objects_from_params
   before_filter :set_current_user_in_model
@@ -16,14 +18,7 @@ class ApplicationController < ActionController::Base
   after_filter :complete_interaction
   before_filter :authorize_collection
 
-
-  # See ActionController::RequestForgeryProtection for details
-  # Uncomment the :secret if you're not using the cookie session store
- # protect_from_forgery :secret => 'I Hate InvalidAuthenticityToken'
-
-
   def load_objects_from_params
-
     # this needs to be ordered from the specific to the
     # general, so that parent_id will load the appropriate
     # object without being overridden by child_id.parent
@@ -78,7 +73,7 @@ class ApplicationController < ActionController::Base
   
   # Set the current user in User
   def set_current_user_in_model
-    User.current_user = current_user
+    User.current = current_user
   end 
 
   # perform appropriate API call for updating the IA server

@@ -7,4 +7,7 @@ ExPageLuxLucis::Application.routes.draw do
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
   match ':controller(/:action(/:id))(.:format)'
+
+  # Static page routes (workaround)
+  match ':action' => 'static#:action', :constraints => { :action => /splash/ }, :as => :static
 end
