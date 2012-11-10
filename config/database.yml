@@ -1,17 +1,36 @@
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: mysql2
+  encoding: utf8
   pool: 5
   timeout: 5000
+  reconnect: true
+  database: expageluxlucis_development
+  username: expageluxlucis
+  password: expageluxlucis
+  socket: /var/run/mysqld/mysqld.sock
 
+## Warning: The database defined as 'test' will be erased and
+## re-generated from your development database when you run 'rake'.
+## Do not set this db to the same as development or production.
 test: &test
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: mysql2
+  encoding: utf8
   pool: 5
   timeout: 5000
+  reconnect: true
+  database: expageluxlucis_test
+  username: expageluxlucis
+  password: expageluxlucis
+  socket: /var/run/mysqld/mysqld.sock
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql2
+  encoding: utf8
   pool: 5
   timeout: 5000
+  reconnect: true
+  database: expageluxlucis_production
+  username: expageluxlucis
+  password: expageluxlucis
+  socket: /var/run/mysqld/mysqld.sock
+
