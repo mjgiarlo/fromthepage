@@ -1,9 +1,10 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
-# Connects this user object to Hydra behaviors. 
- include Hydra::User
-# Connects this user object to Blacklights Bookmarks. 
- include Blacklight::User
+  # Connects this user object to Hydra behaviors. 
+  include Hydra::User
+  # Connects this user object to Blacklights Bookmarks. 
+  include Blacklight::User
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -15,7 +16,7 @@ class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password
   # allows me to get at the user from other models
-  cattr_accessor :current_user
+  #cattr_accessor :current_user
   
   validates_presence_of     :login
   validates_presence_of     :password,                    :if => :password_required?
@@ -94,6 +95,14 @@ class User < ActiveRecord::Base
     self.remember_token_expires_at = nil
     self.remember_token            = nil
     save(false)
+  end
+
+  def self.current
+    Thread.current[:user]
+  end
+
+  def self.current=(user)
+    Thread.current[:user] = user
   end
 
   protected

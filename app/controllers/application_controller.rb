@@ -4,10 +4,11 @@
 #require_dependency "login_system"
 
 class ApplicationController < ActionController::Base
-  # Adds a few additional behaviors into the application controller 
-   include Blacklight::Controller  
-# Adds Hydra behaviors into the application controller 
+  # Adds a few additional behaviors into the application controller
+  include Blacklight::Controller
+  # Adds Hydra behaviors into the application controller
   include Hydra::Controller::ControllerBehavior
+
   def layout_name
    'hydra-head'
   end
@@ -81,11 +82,11 @@ class ApplicationController < ActionController::Base
       @collection = @article.collection
     end
   end
-  
+
   # Set the current user in User
   def set_current_user_in_model
     User.current = current_user
-  end 
+  end
 
   # perform appropriate API call for updating the IA server
   def update_ia_work_server
@@ -100,7 +101,6 @@ class ApplicationController < ActionController::Base
       @work.ia_work.server=ia_servers[@work.ia_work.book_id][:server]
       @work.ia_work.ia_path=ia_servers[@work.ia_work.book_id][:ia_path]
     end
-    
   end
 
   # log what was done
@@ -115,7 +115,7 @@ class ApplicationController < ActionController::Base
     clean_params = params.reject{|k,v| k=='password'}
     if clean_params['user']
        clean_params['user'] = clean_params['user'].reject{|k,v| k=~/password/}
-    end		    
+    end
 
     @interaction.params = clean_params.inspect
 
