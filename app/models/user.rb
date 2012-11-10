@@ -1,5 +1,17 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
+# Connects this user object to Hydra behaviors. 
+ include Hydra::User
+# Connects this user object to Blacklights Bookmarks. 
+ include Blacklight::User
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
   # Virtual attribute for the unencrypted password
   attr_accessor :password
   # allows me to get at the user from other models
@@ -31,6 +43,10 @@ class User < ActiveRecord::Base
   has_many :article_versions, :order => 'created_on DESC'
   has_many :notes, :order => 'created_at DESC'
   has_many :deeds
+
+  def to_s
+    login
+  end
 
   def can_transcribe?(work)
     !work.restrict_scribes || self == work.owner || work.scribes.include?(self)

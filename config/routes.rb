@@ -1,4 +1,11 @@
 ExPageLuxLucis::Application.routes.draw do
+  root :to => "catalog#index"
+
+  Blacklight.add_routes(self)
+  HydraHead.add_routes(self)
+
+  devise_for :users
+
   root :to => 'static#splash'
 
   #map.connect 'ZenasMatthews', :controller => 'collection', :action => 'show', :collection_id => 7
