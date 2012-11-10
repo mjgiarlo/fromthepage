@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Fromthepage::Application.load_tasks
+ExPageLuxLucis::Application.load_tasks
