@@ -10,11 +10,17 @@ gem 'blacklight'
 gem 'hydra-head'
 
 # FromThePage components
-gem 'will_paginate'
 gem 'rmagick', :require => 'RMagick'
+gem 'will_paginate'
 gem 'hpricot'
 gem 'oai'
 gem 'capistrano'
+
+# FtP dependencies that were Rails 2.3.x plugins
+gem 'acts_as_list'
+gem 'acts_as_tree'
+gem 'in_place_editing'
+gem 'simple_captcha'
 
 gem "nokogiri"
 # gem "geokit"

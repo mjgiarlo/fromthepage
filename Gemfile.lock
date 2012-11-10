@@ -41,6 +41,9 @@ GEM
     activesupport (3.2.8)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    acts_as_list (0.1.8)
+    acts_as_tree (1.2.0)
+      activerecord (>= 3.0.0)
     addressable (2.3.2)
     akami (1.2.0)
       gyoku (>= 0.4.0)
@@ -136,6 +139,7 @@ GEM
     hydra-mods (0.0.6)
       active-fedora (> 4.1)
     i18n (0.6.1)
+    in_place_editing (1.2.0)
     jettywrapper (1.3.2)
       activesupport (>= 3.0.0)
       childprocess
@@ -250,6 +254,7 @@ GEM
       nokogiri (>= 1.4.0)
       nori (~> 1.1.0)
       wasabi (~> 2.5.0)
+    simple_captcha (0.1.3)
     solrizer (1.2.2)
       daemons
       mediashelf-loggable (~> 0.4.7)
@@ -289,12 +294,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
+  acts_as_tree
   blacklight
   capistrano
   debugger
   devise
   hpricot
   hydra-head
+  in_place_editing
   jettywrapper
   mysql2
   nokogiri
@@ -302,6 +310,7 @@ DEPENDENCIES
   passenger
   rails (~> 3.2.8)
   rmagick
+  simple_captcha
   sqlite3
   unicorn-rails
   will_paginate

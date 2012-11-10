@@ -164,4 +164,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  protected
+
+  protect_from_forgery
 end
